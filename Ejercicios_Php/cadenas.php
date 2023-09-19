@@ -96,7 +96,7 @@
 
         $url4= parse_url($url, PHP_URL_QUERY) ;
 
-        echo($url4);
+        echo $url4;
 
 
 
