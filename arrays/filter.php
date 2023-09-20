@@ -47,13 +47,6 @@
     );
 
 
-
-    print_r($contactos);
-
-    echo '<br>';
-
-
-
     $filtrarPor = strtolower($_GET['x'] ?? "Pepe");
 
 
