@@ -7,6 +7,5 @@ PDO::ATTR_PERSISTENT => true
 );
 
 $pdo = new PDO(
-'mysql:host=localhost;dbname=sesiones;charset=utf8','root','sa',$opciones
-);
+'mysql:host=localhost;dbname=sesiones;charset=utf8','root','sa',$opciones);
 ?>
