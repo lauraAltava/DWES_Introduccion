@@ -19,7 +19,7 @@ if (isset($_POST["submit"])){
         $errores[] = "El campo usuario no puede estar vacio. "; 
     }
     if (empty($password)){
-        $errores[] = "El campo contraseña no puede estar vacia ";
+        $errores[] = "El campo contraseña no puede estar vacia. ";
 
     }
 
