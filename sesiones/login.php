@@ -32,6 +32,7 @@ if (isset($_POST["submit"])){
 
         $stm -> execute();
         $register = $stm -> fetch();
+
         if ($register){
             $_SESSION["username"] = $register["username"];
             header("location: privada.php");
@@ -57,7 +58,7 @@ if (isset($_POST["submit"])){
 
         Nombre de usuari@: <input type="text" name="username" ><br>
         Contraseña: <input type="password" name="password" ><br>
-        <input type="submit" name="submit" value="Enviar"> <br>
+        <input type="submit" name="submit" value="Entrar"> <br>
 
         <?php 
         if(count($errores) > 0){
@@ -66,6 +67,7 @@ if (isset($_POST["submit"])){
             }
         }
         ?>
+        <a href="formularioregistro.php">Volver a registro</a>
 
     </form>
 </body>

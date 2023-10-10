@@ -1,12 +1,15 @@
 <?php
 require('conexion.php');
-$errorPass = "";
+
+$username = $email = "";
+
+$errorPass = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
-    $username = $_POST['username'] ?? 'noname';
-    $email = $_POST['email'] ?? '0';
-    $password = $_POST['password'] ?? '0';
-
+    
+    $username = $_POST['username'] ?? "";
+    $email = $_POST['email'] ?? "";
+    $password = $_POST['password'] ?? "";
     $pass = $_POST['confirmarContraseña'];
 
     if ($pass == $password){
@@ -17,12 +20,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $pdoSt->bindParam(2, $email);
         $pdoSt->bindParam(3, $password);
 
+    try{
         $pdoSt->execute();
-    }else{
-        $errorPass = "Contraseñas no coinciden";
-    }
-}
+    }catch(PDOException $emailRepetido){
+        $errorMail = $emailRepetido->getMessage();
+        if(strpos($errorMail,'users.username')){
+            $errorPass [] = "Usuario ya existe";
 
+        }
+        if(strpos($errorMail,'users.email')){
+            $errorPass [] = "Email ya existe";
+
+        }
+    }
+    
+}else{
+    $errorPass [] = "Contraseñas no coinciden";
+}}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,12 +49,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <form action="formularioregistro.php" method="post" enctype="multipart/form-data">
 
-        Nombre de usuari@: <input type="text" name="username" ><br>
-        Correo electronico: <input type="email" name="email" ><br>
+        Nombre de usuari@: <input type="text" name="username" value="<?php echo $username?>"><br>
+        Correo electronico: <input type="email" name="email" value="<?php echo $email?>"> ><br>
         Contraseña: <input type="password" name="password" ><br>
         Confirmar contraseña: <input type="password" name="confirmarContraseña" ><br>
-        <?php echo $errorPass ?>
-        <input type="submit" name="submit" value="Enviar">
+        <a href="login.php">Iniciar Sesión</a>
+        <?php 
+        if(count($errorPass) > 0){
+            foreach ($errorPass as $error){
+                echo ($error);
+            }
+        }
+        ?>
+        <input type="submit" name="submit" value="Registrarse">
 
     </form>
 </body>

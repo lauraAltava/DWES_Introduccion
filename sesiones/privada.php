@@ -13,7 +13,7 @@ if (!isset($_SESSION["username"])){
     <title>Logueado</title>
 </head>
 <body>
-    Bienvenido <?php echo $_SESSION["username"]?> !
+    <h1> Bienvenido  <?php echo $_SESSION["username"]?>! </h1> <br>
     <a href="logout.php">Cerrar Sesión</a>
 </body>
 </html>

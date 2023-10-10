@@ -1,12 +1,3 @@
-<?php
-
-    session_start();
-    echo $_SESSION["username"];
-    session_unset();
-    session_destroy();
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +7,16 @@
     <title>Sesion cerrada</title>
 </head>
 <body>
-has cerrado sesion
+<h1>Has cerrado sesión 
+<?php
+
+session_start();
+echo $_SESSION["username"];
+session_unset();
+session_destroy();
+
+?>
+</h1>
+<a href="login.php">Volver a iniciar sesión</a>
 </body>
 </html>
